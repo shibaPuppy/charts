@@ -151,6 +151,21 @@ spec:
                 secretKeyRef:
                   name: {{ template "docker-registry.fullname" . }}-secret
                   key: swiftPassword
+            - name: REGISTRY_STORAGE_SWIFT_TENANT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "docker-registry.fullname" . }}-secret
+                  key: swiftTenant
+            - name: REGISTRY_STORAGE_SWIFT_DOMAIN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "docker-registry.fullname" . }}-secret
+                  key: swiftUserDomain
+            - name: REGISTRY_STORAGE_SWIFT_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "docker-registry.fullname" . }}-secret
+                  key: swiftRegion
             - name: REGISTRY_STORAGE_SWIFT_CONTAINER
               value: {{ required ".Values.swift.container is required" .Values.swift.container }}
 {{- end }}
